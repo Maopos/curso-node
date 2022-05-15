@@ -1,8 +1,13 @@
-const mongoose = require("mongoose");
+import { Schema, model } from "mongoose";
 
-const StorageSchema = new mongoose.Schema(
+const StorageSchema = new Schema(
   {
-      
+    url: {
+      type: String,
+    },
+    filename: {
+      type: String,
+    },
   },
   {
     timestamps: true,
@@ -10,4 +15,4 @@ const StorageSchema = new mongoose.Schema(
   }
 );
 
-module.exports = mongoose.model("Storage", StorageSchema);
+export default model("Storage", StorageSchema);
