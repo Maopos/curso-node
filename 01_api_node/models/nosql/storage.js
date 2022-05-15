@@ -1,6 +1,6 @@
-import { Schema, model } from "mongoose";
+const mongoose = require("mongoose");
 
-const StorageSchema = new Schema(
+const StorageSchema = new mongoose.Schema(
   {
     url: {
       type: String,
@@ -15,4 +15,4 @@ const StorageSchema = new Schema(
   }
 );
 
-export default model("Storage", StorageSchema);
+module.exports = mongoose.model("Storage", StorageSchema);
