@@ -14,8 +14,12 @@ const getItem = async (req, res) => {};
 const createItem = async (req, res) => {
   try {
     const { file } = req;
-    // const savedItem = await Storage.create(item);
-    res.send(file);
+    const fileData = {
+      filename: file.filename,
+      url: `${process.env.PUBLIC_URL}/${file.filename}`,
+    };
+    const savedItem = await Storage.create(fileData);
+    res.send(savedItem);
   } catch (error) {
     console.log(error);
   }
