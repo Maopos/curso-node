@@ -10,6 +10,7 @@ const {
 const router = express.Router();
 
 router.get("/", getTracks);
+router.post("/", createTrack);
 // router.get("/:id", getTrack);
 
 module.exports = router;

@@ -12,7 +12,15 @@ const getTracks = async (req, res) => {
 const getTrack = async (req, res) => {};
 
 // ! create Track
-const createTrack = async (req, res) => {};
+const createTrack = async (req, res) => {
+  try {
+    const track = req.body;
+    const savedTrack = await Track.create(track);
+    res.send(savedTrack);
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 // ! update Track
 const updateTrack = async (req, res) => {};
