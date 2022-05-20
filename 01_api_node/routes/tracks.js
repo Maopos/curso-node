@@ -6,11 +6,11 @@ const {
   updateTrack,
   deleteTrack,
 } = require("../controllers/tracks");
+const { createItemValidator } = require("../validators/tracks");
 
 const router = express.Router();
 
 router.get("/", getTracks);
-router.post("/", createTrack);
-// router.get("/:id", getTrack);
+router.post("/", createItemValidator , createTrack);
 
 module.exports = router;
