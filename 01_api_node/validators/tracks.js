@@ -18,4 +18,11 @@ const createItemValidator = [
   },
 ];
 
-module.exports = { createItemValidator };
+const getItemValidator = [
+  check("id").exists().notEmpty().isMongoId(),
+  (req, res, next) => {
+    return validateResults(req, res, next);
+  },
+];
+
+module.exports = { createItemValidator, getItemValidator };
