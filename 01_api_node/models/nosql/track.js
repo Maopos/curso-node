@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const mongooseDelete = require("mongoose-delete");
 
 const TrackSchema = new mongoose.Schema(
   {
@@ -27,7 +28,7 @@ const TrackSchema = new mongoose.Schema(
       end: { type: Number },
     },
     mediaId: {
-        type: mongoose.Types.ObjectId
+      type: mongoose.Types.ObjectId,
     },
   },
   {
@@ -35,5 +36,7 @@ const TrackSchema = new mongoose.Schema(
     versionKey: false,
   }
 );
+
+TrackSchema.plugin(mongooseDelete, { overrideMethods: "all" });
 
 module.exports = mongoose.model("Track", TrackSchema);

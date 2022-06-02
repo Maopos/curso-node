@@ -52,8 +52,12 @@ const updateTrack = async (req, res) => {
 const deleteTrack = async (req, res) => {
   try {
     const { id } = req.params;
-    await Track.findByIdAndDelete(id);
-    res.send("Track deleted...");
+    const deletedTrack = await Track.delete({ _id: id });
+    if (!deletedTrack) {
+      res.send({ msg: "Track not found..." });
+      return;
+    }
+    res.send({ msg: "Track deleted..." });
   } catch (error) {
     handleError(res, "Error deleting track...", 403);
   }
