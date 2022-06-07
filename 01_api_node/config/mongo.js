@@ -1,5 +1,9 @@
+/* Importing the mongoose library. */
 const mongoose = require("mongoose");
 
+/**
+ * It connects to the database using the MongoDB URI stored in the environment variable `MONGO_URI`
+ */
 const dbConnect = () => {
   const MONGO_URI = process.env.MONGO_URI;
   mongoose.connect(

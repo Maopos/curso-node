@@ -1,6 +1,7 @@
 const { check } = require("express-validator");
 const validateResults = require("../utils/handleValidator");
 
+/* A validator for the createItem route. */
 const createItemValidator = [
   check("name").exists().notEmpty(),
   check("album").exists().notEmpty(),
@@ -18,6 +19,7 @@ const createItemValidator = [
   },
 ];
 
+/* Validating the id of the item. */
 const getItemValidator = [
   check("id").exists().notEmpty().isMongoId(),
   (req, res, next) => {

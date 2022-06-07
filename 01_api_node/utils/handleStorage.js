@@ -1,5 +1,6 @@
 const multer = require("multer");
 
+/* Creating a storage object that will be used by multer to store the file. */
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     const pathStorage = `${__dirname}/../storage`;
@@ -12,6 +13,7 @@ const storage = multer.diskStorage({
   },
 });
 
+/* Creating a middleware that will be used to upload files. */
 const uploadMiddleware = multer({
   storage,
 });
