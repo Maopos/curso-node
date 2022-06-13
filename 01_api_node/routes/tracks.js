@@ -1,5 +1,5 @@
 const express = require("express");
-const customHeader = require("../middleware/customHeader");
+const authMiddleware = require("../middleware/session");
 const {
   createItemValidator,
   getItemValidator,
@@ -16,7 +16,7 @@ const {
 const router = express.Router();
 
 router.post("/", createItemValidator, createTrack);
-router.get("/", getTracks);
+router.get("/", authMiddleware, getTracks);
 router.get("/:id", getItemValidator, getTrack);
 router.put("/:id", createItemValidator, getItemValidator, updateTrack);
 router.delete("/:id", getItemValidator, deleteTrack);

@@ -1,5 +1,6 @@
 const { handleError } = require("../utils/handleError");
 const { verifyToken } = require("../utils/handleJwt");
+const { User } = require("../models");
 
 /**
  * 1. It checks if the request has an authorization header,
@@ -15,18 +16,22 @@ const { verifyToken } = require("../utils/handleJwt");
 const authMiddleware = async (req, res, next) => {
   try {
     //   1.
-    if (!req.header.authorization) {
+    if (!req.headers.authorization) {
       handleError(res, "Token error...", 401);
       return;
     }
     // 2.
-    const token = req.header.authorization.split(" ")[1];
+    const token = req.headers.authorization.split(" ")[1];
     const dataToken = await verifyToken(token);
     // 3.
     if (!dataToken._id) {
       handleError(res, "User Id error...", 401);
       return;
     }
+
+    const user = await User.findById(dataToken._id);
+    req.user = user;
+
     // 4.
     next();
   } catch (error) {

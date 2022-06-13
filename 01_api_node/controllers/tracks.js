@@ -5,8 +5,9 @@ const { handleError } = require("../utils/handleError");
 // ! get Tracks
 const getTracks = async (req, res) => {
   try {
+    const user = req.user;
     const tracks = await Track.find();
-    res.send(tracks);
+    res.send({user, tracks});
   } catch (error) {
     handleError(res, "Something goes wrong...", 403);
   }
