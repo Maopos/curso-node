@@ -49,6 +49,7 @@ const register = async (req, res) => {
 const login = async (req, res) => {
   try {
     req = matchedData(req);
+
     const user = await User.findOne({ email: req.email }).select(
       "password name role email"
     );

@@ -1,5 +1,6 @@
 const express = require("express");
 const authMiddleware = require("../middleware/session");
+const checkRole = require("../middleware/role");
 const {
   createItemValidator,
   getItemValidator,
@@ -15,10 +16,16 @@ const {
 
 const router = express.Router();
 
-router.post("/", createItemValidator, createTrack);
+router.post("/", authMiddleware, checkRole(['admin']), createItemValidator, createTrack);
 router.get("/", authMiddleware, getTracks);
-router.get("/:id", getItemValidator, getTrack);
-router.put("/:id", createItemValidator, getItemValidator, updateTrack);
-router.delete("/:id", getItemValidator, deleteTrack);
+router.get("/:id", authMiddleware, getItemValidator, getTrack);
+router.put(
+  "/:id",
+  authMiddleware,
+  createItemValidator,
+  getItemValidator,
+  updateTrack
+);
+router.delete("/:id", authMiddleware, getItemValidator, deleteTrack);
 
 module.exports = router;

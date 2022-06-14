@@ -7,6 +7,6 @@ const { register, login } = require("../controllers/auth");
 const router = express.Router();
 
 router.post("/register", registerValidator, register);
-router.post("/login", loginValidator, authMiddleware, login);
+router.post("/login", loginValidator, login);
 
 module.exports = router;

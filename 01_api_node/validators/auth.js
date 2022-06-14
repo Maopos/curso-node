@@ -14,7 +14,7 @@ const registerValidator = [
 
 /* An array of validators. */
 const loginValidator = [
-   check("email").exists().notEmpty().isEmail(),
+  check("email").exists().notEmpty().isEmail(),
   check("password").exists().notEmpty().isLength({ min: 3, max: 10 }),
   (req, res, next) => {
     return validateResults(req, res, next);

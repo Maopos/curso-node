@@ -7,7 +7,7 @@ const getTracks = async (req, res) => {
   try {
     const user = req.user;
     const tracks = await Track.find();
-    res.send({user, tracks});
+    res.send({ userId: user._id, userRole: user.role, tracks });
   } catch (error) {
     handleError(res, "Something goes wrong...", 403);
   }
